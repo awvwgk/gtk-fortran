@@ -1,4 +1,4 @@
-gtk-fortran;4.5.0
-GTK;4.12.3
-GLib;2.78.1
-Fedora;39
+gtk-fortran;4.6.0
+GTK;4.14.2
+GLib;2.80.0
+Fedora;40

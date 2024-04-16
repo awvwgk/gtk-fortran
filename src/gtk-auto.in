@@ -1255,6 +1255,52 @@ subroutine gtk_accessible_relation_init_value(relation, value) bind(c)
   type(c_ptr), value :: value
 end subroutine
 
+! GDK_AVAILABLE_IN_4_14
+!GType gtk_accessible_list_get_type (void);
+function gtk_accessible_list_get_type() bind(c)
+  import :: c_size_t
+  implicit none
+  integer(c_size_t) :: gtk_accessible_list_get_type
+end function
+
+! GDK_AVAILABLE_IN_4_14
+!GList * gtk_accessible_list_get_objects (GtkAccessibleList *accessible_list);
+function gtk_accessible_list_get_objects(accessible_list) bind(c)
+  import :: c_ptr
+  implicit none
+  type(c_ptr) :: gtk_accessible_list_get_objects
+  type(c_ptr), value :: accessible_list
+end function
+
+! GDK_AVAILABLE_IN_4_14
+!GtkAccessibleList * gtk_accessible_list_new_from_list (GList *list);
+function gtk_accessible_list_new_from_list(list) bind(c)
+  import :: c_ptr
+  implicit none
+  type(c_ptr) :: gtk_accessible_list_new_from_list
+  type(c_ptr), value :: list
+end function
+
+! GDK_AVAILABLE_IN_4_14
+!GtkAccessibleList * gtk_accessible_list_new_from_array (GtkAccessible **accessibles, gsize n_accessibles);
+function gtk_accessible_list_new_from_array(accessibles, n_accessibles) bind(c)
+  import :: c_ptr, c_size_t
+  implicit none
+  type(c_ptr) :: gtk_accessible_list_new_from_array
+  type(c_ptr), value :: accessibles
+  integer(c_size_t), value :: n_accessibles
+end function
+
+! GDK_AVAILABLE_IN_4_14
+!void gtk_accessible_announce (GtkAccessible *self, const char *message, GtkAccessibleAnnouncementPriority priority);
+subroutine gtk_accessible_announce(self, message, priority) bind(c)
+  import :: c_ptr, c_char, c_int
+  implicit none
+  type(c_ptr), value :: self
+  character(kind=c_char), dimension(*) :: message
+  integer(c_int), value :: priority
+end subroutine
+
 !--------------------------------------------------
 ! /usr/include/gtk-4.0/gtk/gtkpadcontroller.h
 !--------------------------------------------------
@@ -2282,6 +2328,42 @@ function gtk_search_entry_get_placeholder_text(entry) bind(c)
   type(c_ptr), value :: entry
 end function
 
+! GDK_AVAILABLE_IN_4_14
+!void gtk_search_entry_set_input_purpose (GtkSearchEntry *entry, GtkInputPurpose purpose);
+subroutine gtk_search_entry_set_input_purpose(entry, purpose) bind(c)
+  import :: c_ptr, c_int
+  implicit none
+  type(c_ptr), value :: entry
+  integer(c_int), value :: purpose
+end subroutine
+
+! GDK_AVAILABLE_IN_4_14
+!GtkInputPurpose gtk_search_entry_get_input_purpose (GtkSearchEntry *entry);
+function gtk_search_entry_get_input_purpose(entry) bind(c)
+  import :: c_int, c_ptr
+  implicit none
+  integer(c_int) :: gtk_search_entry_get_input_purpose
+  type(c_ptr), value :: entry
+end function
+
+! GDK_AVAILABLE_IN_4_14
+!void gtk_search_entry_set_input_hints (GtkSearchEntry *entry, GtkInputHints hints);
+subroutine gtk_search_entry_set_input_hints(entry, hints) bind(c)
+  import :: c_ptr, c_int
+  implicit none
+  type(c_ptr), value :: entry
+  integer(c_int), value :: hints
+end subroutine
+
+! GDK_AVAILABLE_IN_4_14
+!GtkInputHints gtk_search_entry_get_input_hints (GtkSearchEntry *entry);
+function gtk_search_entry_get_input_hints(entry) bind(c)
+  import :: c_int, c_ptr
+  implicit none
+  integer(c_int) :: gtk_search_entry_get_input_hints
+  type(c_ptr), value :: entry
+end function
+
 !--------------------------------------------------
 ! /usr/include/gtk-4.0/gtk/gtkorientable.h
 !--------------------------------------------------
@@ -2356,6 +2438,24 @@ function gtk_popover_menu_get_menu_model(popover) bind(c)
   import :: c_ptr
   implicit none
   type(c_ptr) :: gtk_popover_menu_get_menu_model
+  type(c_ptr), value :: popover
+end function
+
+! GDK_AVAILABLE_IN_4_14
+!void gtk_popover_menu_set_flags (GtkPopoverMenu *popover, GtkPopoverMenuFlags flags);
+subroutine gtk_popover_menu_set_flags(popover, flags) bind(c)
+  import :: c_ptr, c_int
+  implicit none
+  type(c_ptr), value :: popover
+  integer(c_int), value :: flags
+end subroutine
+
+! GDK_AVAILABLE_IN_4_14
+!GtkPopoverMenuFlags gtk_popover_menu_get_flags (GtkPopoverMenu *popover);
+function gtk_popover_menu_get_flags(popover) bind(c)
+  import :: c_int, c_ptr
+  implicit none
+  integer(c_int) :: gtk_popover_menu_get_flags
   type(c_ptr), value :: popover
 end function
 
@@ -2853,6 +2953,25 @@ function gtk_spin_button_new_with_range(min, max, step) bind(c)
   real(c_double), value :: min
   real(c_double), value :: max
   real(c_double), value :: step
+end function
+
+! GDK_AVAILABLE_IN_4_14
+!void gtk_spin_button_set_activates_default (GtkSpinButton *spin_button, gboolean activates_default);
+subroutine gtk_spin_button_set_activates_default(spin_button,&
+& activates_default) bind(c)
+  import :: c_ptr, c_int
+  implicit none
+  type(c_ptr), value :: spin_button
+  integer(c_int), value :: activates_default
+end subroutine
+
+! GDK_AVAILABLE_IN_4_14
+!gboolean gtk_spin_button_get_activates_default (GtkSpinButton *spin_button);
+function gtk_spin_button_get_activates_default(spin_button) bind(c)
+  import :: c_int, c_ptr
+  implicit none
+  integer(c_int) :: gtk_spin_button_get_activates_default
+  type(c_ptr), value :: spin_button
 end function
 
 ! GDK_AVAILABLE_IN_ALL
@@ -3451,6 +3570,9 @@ function gtk_grid_layout_child_get_row_span(child) bind(c)
   type(c_ptr), value :: child
 end function
 
+!--------------------------------------------------
+! /usr/include/gtk-4.0/gtk/gtkconfig.h
+!--------------------------------------------------
 !--------------------------------------------------
 ! /usr/include/gtk-4.0/gtk/gtkglarea.h
 !--------------------------------------------------
@@ -4200,7 +4322,7 @@ subroutine gtk_window_present(window) bind(c)
   type(c_ptr), value :: window
 end subroutine
 
-! GDK_AVAILABLE_IN_ALL
+! GDK_DEPRECATED_IN_4_14_FOR(gtk_window_present)
 !void gtk_window_present_with_time (GtkWindow *window, guint32 timestamp);
 subroutine gtk_window_present_with_time(window, timestamp) bind(c)
   import :: c_ptr, c_int32_t
@@ -4859,6 +4981,16 @@ function gtk_im_context_delete_surrounding(context, offset, n_chars) bind(c)
   integer(c_int), value :: n_chars
 end function
 
+! GDK_AVAILABLE_IN_4_14
+!gboolean gtk_im_context_activate_osk (GtkIMContext *context, GdkEvent *event);
+function gtk_im_context_activate_osk(context, event) bind(c)
+  import :: c_int, c_ptr
+  implicit none
+  integer(c_int) :: gtk_im_context_activate_osk
+  type(c_ptr), value :: context
+  type(c_ptr), value :: event
+end function
+
 !--------------------------------------------------
 ! /usr/include/gtk-4.0/gtk/gtkcolordialogbutton.h
 !--------------------------------------------------
@@ -5138,6 +5270,15 @@ function gtk_shortcuts_section_get_type() bind(c)
   implicit none
   integer(c_size_t) :: gtk_shortcuts_section_get_type
 end function
+
+! GDK_AVAILABLE_IN_4_14
+!void gtk_shortcuts_section_add_group (GtkShortcutsSection *self, GtkShortcutsGroup *group);
+subroutine gtk_shortcuts_section_add_group(self, group) bind(c)
+  import :: c_ptr
+  implicit none
+  type(c_ptr), value :: self
+  type(c_ptr), value :: group
+end subroutine
 
 !--------------------------------------------------
 ! /usr/include/gtk-4.0/gtk/gtkgestureswipe.h
@@ -5686,6 +5827,60 @@ function gtk_calendar_get_show_day_names(self) bind(c)
   type(c_ptr), value :: self
 end function
 
+! GDK_AVAILABLE_IN_4_14
+!void gtk_calendar_set_day (GtkCalendar *self, int day);
+subroutine gtk_calendar_set_day(self, day) bind(c)
+  import :: c_ptr, c_int
+  implicit none
+  type(c_ptr), value :: self
+  integer(c_int), value :: day
+end subroutine
+
+! GDK_AVAILABLE_IN_4_14
+!int gtk_calendar_get_day (GtkCalendar *self);
+function gtk_calendar_get_day(self) bind(c)
+  import :: c_int, c_ptr
+  implicit none
+  integer(c_int) :: gtk_calendar_get_day
+  type(c_ptr), value :: self
+end function
+
+! GDK_AVAILABLE_IN_4_14
+!void gtk_calendar_set_month (GtkCalendar *self, int month);
+subroutine gtk_calendar_set_month(self, month) bind(c)
+  import :: c_ptr, c_int
+  implicit none
+  type(c_ptr), value :: self
+  integer(c_int), value :: month
+end subroutine
+
+! GDK_AVAILABLE_IN_4_14
+!int gtk_calendar_get_month (GtkCalendar *self);
+function gtk_calendar_get_month(self) bind(c)
+  import :: c_int, c_ptr
+  implicit none
+  integer(c_int) :: gtk_calendar_get_month
+  type(c_ptr), value :: self
+end function
+
+! GDK_AVAILABLE_IN_4_14
+!void gtk_calendar_set_year (GtkCalendar *self, int year);
+subroutine gtk_calendar_set_year(self, year) bind(c)
+  import :: c_ptr, c_int
+  implicit none
+  type(c_ptr), value :: self
+  integer(c_int), value :: year
+end subroutine
+
+! GDK_AVAILABLE_IN_4_14
+!int gtk_calendar_get_year (GtkCalendar *self);
+function gtk_calendar_get_year(self) bind(c)
+  import :: c_int, c_ptr
+  implicit none
+  integer(c_int) :: gtk_calendar_get_year
+  type(c_ptr), value :: self
+end function
+
 ! GDK_AVAILABLE_IN_ALL
 !GDateTime * gtk_calendar_get_date (GtkCalendar *self);
 function gtk_calendar_get_date(self) bind(c)
@@ -5817,6 +6012,26 @@ subroutine gtk_snapshot_push_rounded_clip(snapshot, bounds) bind(c)
   implicit none
   type(c_ptr), value :: snapshot
   type(c_ptr), value :: bounds
+end subroutine
+
+! GDK_AVAILABLE_IN_4_14
+!void gtk_snapshot_push_fill (GtkSnapshot *snapshot, GskPath *path, GskFillRule fill_rule);
+subroutine gtk_snapshot_push_fill(snapshot, path, fill_rule) bind(c)
+  import :: c_ptr, c_int
+  implicit none
+  type(c_ptr), value :: snapshot
+  type(c_ptr), value :: path
+  integer(c_int), value :: fill_rule
+end subroutine
+
+! GDK_AVAILABLE_IN_4_14
+!void gtk_snapshot_push_stroke (GtkSnapshot *snapshot, GskPath *path, const GskStroke *stroke);
+subroutine gtk_snapshot_push_stroke(snapshot, path, stroke) bind(c)
+  import :: c_ptr
+  implicit none
+  type(c_ptr), value :: snapshot
+  type(c_ptr), value :: path
+  type(c_ptr), value :: stroke
 end subroutine
 
 ! GDK_AVAILABLE_IN_ALL
@@ -6150,6 +6365,28 @@ subroutine gtk_snapshot_append_layout(snapshot, layout, color) bind(c)
   implicit none
   type(c_ptr), value :: snapshot
   type(c_ptr), value :: layout
+  type(c_ptr), value :: color
+end subroutine
+
+! GDK_AVAILABLE_IN_4_14
+!void gtk_snapshot_append_fill (GtkSnapshot *snapshot, GskPath *path, GskFillRule fill_rule, const GdkRGBA *color);
+subroutine gtk_snapshot_append_fill(snapshot, path, fill_rule, color) bind(c)
+  import :: c_ptr, c_int
+  implicit none
+  type(c_ptr), value :: snapshot
+  type(c_ptr), value :: path
+  integer(c_int), value :: fill_rule
+  type(c_ptr), value :: color
+end subroutine
+
+! GDK_AVAILABLE_IN_4_14
+!void gtk_snapshot_append_stroke (GtkSnapshot *snapshot, GskPath *path, const GskStroke *stroke, const GdkRGBA *color);
+subroutine gtk_snapshot_append_stroke(snapshot, path, stroke, color) bind(c)
+  import :: c_ptr
+  implicit none
+  type(c_ptr), value :: snapshot
+  type(c_ptr), value :: path
+  type(c_ptr), value :: stroke
   type(c_ptr), value :: color
 end subroutine
 
@@ -8868,6 +9105,24 @@ subroutine gtk_file_launcher_set_always_ask(self, always_ask) bind(c)
   integer(c_int), value :: always_ask
 end subroutine
 
+! GDK_AVAILABLE_IN_4_14
+!gboolean gtk_file_launcher_get_writable (GtkFileLauncher *self);
+function gtk_file_launcher_get_writable(self) bind(c)
+  import :: c_int, c_ptr
+  implicit none
+  integer(c_int) :: gtk_file_launcher_get_writable
+  type(c_ptr), value :: self
+end function
+
+! GDK_AVAILABLE_IN_4_14
+!void gtk_file_launcher_set_writable (GtkFileLauncher *self, gboolean writable);
+subroutine gtk_file_launcher_set_writable(self, writable) bind(c)
+  import :: c_ptr, c_int
+  implicit none
+  type(c_ptr), value :: self
+  integer(c_int), value :: writable
+end subroutine
+
 ! GDK_AVAILABLE_IN_4_10
 !void gtk_file_launcher_launch (GtkFileLauncher *self, GtkWindow *parent, GCancellable *cancellable, GAsyncReadyCallback callback, gpointer user_data);
 subroutine gtk_file_launcher_launch(self, parent, cancellable, callback,&
@@ -9756,6 +10011,15 @@ function gtk_shortcuts_group_get_type() bind(c)
   implicit none
   integer(c_size_t) :: gtk_shortcuts_group_get_type
 end function
+
+! GDK_AVAILABLE_IN_4_14
+!void gtk_shortcuts_group_add_shortcut (GtkShortcutsGroup *self, GtkShortcutsShortcut *shortcut);
+subroutine gtk_shortcuts_group_add_shortcut(self, shortcut) bind(c)
+  import :: c_ptr
+  implicit none
+  type(c_ptr), value :: self
+  type(c_ptr), value :: shortcut
+end subroutine
 
 !--------------------------------------------------
 ! /usr/include/gtk-4.0/gtk/gtkconstraintlayout.h
@@ -10657,6 +10921,15 @@ function gtk_shortcuts_window_get_type() bind(c)
   implicit none
   integer(c_size_t) :: gtk_shortcuts_window_get_type
 end function
+
+! GDK_AVAILABLE_IN_4_14
+!void gtk_shortcuts_window_add_section (GtkShortcutsWindow *self, GtkShortcutsSection *section);
+subroutine gtk_shortcuts_window_add_section(self, section) bind(c)
+  import :: c_ptr
+  implicit none
+  type(c_ptr), value :: self
+  type(c_ptr), value :: section
+end subroutine
 
 !--------------------------------------------------
 ! /usr/include/gtk-4.0/gtk/gtkcustomfilter.h
@@ -11971,6 +12244,24 @@ function gtk_scale_button_get_active(button) bind(c)
   integer(c_int) :: gtk_scale_button_get_active
   type(c_ptr), value :: button
 end function
+
+! GDK_AVAILABLE_IN_4_14
+!gboolean gtk_scale_button_get_has_frame (GtkScaleButton *button);
+function gtk_scale_button_get_has_frame(button) bind(c)
+  import :: c_int, c_ptr
+  implicit none
+  integer(c_int) :: gtk_scale_button_get_has_frame
+  type(c_ptr), value :: button
+end function
+
+! GDK_AVAILABLE_IN_4_14
+!void gtk_scale_button_set_has_frame (GtkScaleButton *button, gboolean has_frame);
+subroutine gtk_scale_button_set_has_frame(button, has_frame) bind(c)
+  import :: c_ptr, c_int
+  implicit none
+  type(c_ptr), value :: button
+  integer(c_int), value :: has_frame
+end subroutine
 
 !--------------------------------------------------
 ! /usr/include/gtk-4.0/gtk/gtkrange.h
@@ -15874,6 +16165,225 @@ function gtk_gesture_single_get_current_sequence(gesture) bind(c)
 end function
 
 !--------------------------------------------------
+! /usr/include/gtk-4.0/gtk/gtkprintdialog.h
+!--------------------------------------------------
+! GDK_AVAILABLE_IN_4_14
+!GType gtk_print_setup_get_type (void) ;
+function gtk_print_setup_get_type() bind(c)
+  import :: c_size_t
+  implicit none
+  integer(c_size_t) :: gtk_print_setup_get_type
+end function
+
+! GDK_AVAILABLE_IN_4_14
+!GtkPrintSetup *gtk_print_setup_ref (GtkPrintSetup *setup);
+function gtk_print_setup_ref(setup) bind(c)
+  import :: c_ptr
+  implicit none
+  type(c_ptr) :: gtk_print_setup_ref
+  type(c_ptr), value :: setup
+end function
+
+! GDK_AVAILABLE_IN_4_14
+!void gtk_print_setup_unref (GtkPrintSetup *setup);
+subroutine gtk_print_setup_unref(setup) bind(c)
+  import :: c_ptr
+  implicit none
+  type(c_ptr), value :: setup
+end subroutine
+
+! 
+!GtkPrintSettings * gtk_print_setup_get_print_settings (GtkPrintSetup *setup);
+function gtk_print_setup_get_print_settings(setup) bind(c)
+  import :: c_ptr
+  implicit none
+  type(c_ptr) :: gtk_print_setup_get_print_settings
+  type(c_ptr), value :: setup
+end function
+
+! GDK_AVAILABLE_IN_4_14
+!GtkPageSetup * gtk_print_setup_get_page_setup (GtkPrintSetup *setup);
+function gtk_print_setup_get_page_setup(setup) bind(c)
+  import :: c_int, c_ptr
+  implicit none
+  integer(c_int) :: gtk_print_setup_get_page_setup
+  type(c_ptr), value :: setup
+end function
+
+! GDK_AVAILABLE_IN_4_14
+!GtkPrintDialog *gtk_print_dialog_new (void);
+function gtk_print_dialog_new() bind(c)
+  import :: c_ptr
+  implicit none
+  type(c_ptr) :: gtk_print_dialog_new
+end function
+
+! GDK_AVAILABLE_IN_4_14
+!const char * gtk_print_dialog_get_title (GtkPrintDialog *self);
+function gtk_print_dialog_get_title(self) bind(c)
+  import :: c_ptr
+  implicit none
+  type(c_ptr) :: gtk_print_dialog_get_title
+  type(c_ptr), value :: self
+end function
+
+! GDK_AVAILABLE_IN_4_14
+!void gtk_print_dialog_set_title (GtkPrintDialog *self, const char *title);
+subroutine gtk_print_dialog_set_title(self, title) bind(c)
+  import :: c_ptr, c_char
+  implicit none
+  type(c_ptr), value :: self
+  character(kind=c_char), dimension(*) :: title
+end subroutine
+
+! GDK_AVAILABLE_IN_4_14
+!const char * gtk_print_dialog_get_accept_label (GtkPrintDialog *self);
+function gtk_print_dialog_get_accept_label(self) bind(c)
+  import :: c_ptr
+  implicit none
+  type(c_ptr) :: gtk_print_dialog_get_accept_label
+  type(c_ptr), value :: self
+end function
+
+! GDK_AVAILABLE_IN_4_14
+!void gtk_print_dialog_set_accept_label (GtkPrintDialog *self, const char *accept_label);
+subroutine gtk_print_dialog_set_accept_label(self, accept_label) bind(c)
+  import :: c_ptr, c_char
+  implicit none
+  type(c_ptr), value :: self
+  character(kind=c_char), dimension(*) :: accept_label
+end subroutine
+
+! GDK_AVAILABLE_IN_4_14
+!gboolean gtk_print_dialog_get_modal (GtkPrintDialog *self);
+function gtk_print_dialog_get_modal(self) bind(c)
+  import :: c_int, c_ptr
+  implicit none
+  integer(c_int) :: gtk_print_dialog_get_modal
+  type(c_ptr), value :: self
+end function
+
+! GDK_AVAILABLE_IN_4_14
+!void gtk_print_dialog_set_modal (GtkPrintDialog *self, gboolean modal);
+subroutine gtk_print_dialog_set_modal(self, modal) bind(c)
+  import :: c_ptr, c_int
+  implicit none
+  type(c_ptr), value :: self
+  integer(c_int), value :: modal
+end subroutine
+
+! GDK_AVAILABLE_IN_4_14
+!GtkPageSetup * gtk_print_dialog_get_page_setup (GtkPrintDialog *self);
+function gtk_print_dialog_get_page_setup(self) bind(c)
+  import :: c_int, c_ptr
+  implicit none
+  integer(c_int) :: gtk_print_dialog_get_page_setup
+  type(c_ptr), value :: self
+end function
+
+! GDK_AVAILABLE_IN_4_14
+!void gtk_print_dialog_set_page_setup (GtkPrintDialog *self, GtkPageSetup *page_setup);
+subroutine gtk_print_dialog_set_page_setup(self, page_setup) bind(c)
+  import :: c_ptr, c_int
+  implicit none
+  type(c_ptr), value :: self
+  integer(c_int), value :: page_setup
+end subroutine
+
+! GDK_AVAILABLE_IN_4_14
+!GtkPrintSettings * gtk_print_dialog_get_print_settings (GtkPrintDialog *self);
+function gtk_print_dialog_get_print_settings(self) bind(c)
+  import :: c_ptr
+  implicit none
+  type(c_ptr) :: gtk_print_dialog_get_print_settings
+  type(c_ptr), value :: self
+end function
+
+! GDK_AVAILABLE_IN_4_14
+!void gtk_print_dialog_set_print_settings (GtkPrintDialog *self, GtkPrintSettings *print_settings);
+subroutine gtk_print_dialog_set_print_settings(self, print_settings) bind(c)
+  import :: c_ptr
+  implicit none
+  type(c_ptr), value :: self
+  type(c_ptr), value :: print_settings
+end subroutine
+
+! GDK_AVAILABLE_IN_4_14
+!void gtk_print_dialog_setup (GtkPrintDialog *self, GtkWindow *parent, GCancellable *cancellable, GAsyncReadyCallback callback, gpointer user_data);
+subroutine gtk_print_dialog_setup(self, parent, cancellable, callback,&
+& user_data) bind(c)
+  import :: c_ptr, c_funptr
+  implicit none
+  type(c_ptr), value :: self
+  type(c_ptr), value :: parent
+  type(c_ptr), value :: cancellable
+  type(c_funptr), value :: callback
+  type(c_ptr), value :: user_data
+end subroutine
+
+! GDK_AVAILABLE_IN_4_14
+!GtkPrintSetup *gtk_print_dialog_setup_finish (GtkPrintDialog *self, GAsyncResult *result, GError **error);
+function gtk_print_dialog_setup_finish(self, result, error) bind(c)
+  import :: c_ptr
+  implicit none
+  type(c_ptr) :: gtk_print_dialog_setup_finish
+  type(c_ptr), value :: self
+  type(c_ptr), value :: result
+  type(c_ptr), value :: error
+end function
+
+! GDK_AVAILABLE_IN_4_14
+!void gtk_print_dialog_print (GtkPrintDialog *self, GtkWindow *parent, GtkPrintSetup *setup, GCancellable *cancellable, GAsyncReadyCallback callback, gpointer user_data);
+subroutine gtk_print_dialog_print(self, parent, setup, cancellable, callback,&
+& user_data) bind(c)
+  import :: c_ptr, c_funptr
+  implicit none
+  type(c_ptr), value :: self
+  type(c_ptr), value :: parent
+  type(c_ptr), value :: setup
+  type(c_ptr), value :: cancellable
+  type(c_funptr), value :: callback
+  type(c_ptr), value :: user_data
+end subroutine
+
+! GDK_AVAILABLE_IN_4_14
+!GOutputStream * gtk_print_dialog_print_finish (GtkPrintDialog *self, GAsyncResult *result, GError **error);
+function gtk_print_dialog_print_finish(self, result, error) bind(c)
+  import :: c_ptr
+  implicit none
+  type(c_ptr) :: gtk_print_dialog_print_finish
+  type(c_ptr), value :: self
+  type(c_ptr), value :: result
+  type(c_ptr), value :: error
+end function
+
+! GDK_AVAILABLE_IN_4_14
+!void gtk_print_dialog_print_file (GtkPrintDialog *self, GtkWindow *parent, GtkPrintSetup *setup, GFile *file, GCancellable *cancellable, GAsyncReadyCallback callback, gpointer user_data);
+subroutine gtk_print_dialog_print_file(self, parent, setup, file, cancellable,&
+& callback, user_data) bind(c)
+  import :: c_ptr, c_funptr
+  implicit none
+  type(c_ptr), value :: self
+  type(c_ptr), value :: parent
+  type(c_ptr), value :: setup
+  type(c_ptr), value :: file
+  type(c_ptr), value :: cancellable
+  type(c_funptr), value :: callback
+  type(c_ptr), value :: user_data
+end subroutine
+
+! GDK_AVAILABLE_IN_4_14
+!gboolean gtk_print_dialog_print_file_finish (GtkPrintDialog *self, GAsyncResult *result, GError **error);
+function gtk_print_dialog_print_file_finish(self, result, error) bind(c)
+  import :: c_int, c_ptr
+  implicit none
+  integer(c_int) :: gtk_print_dialog_print_file_finish
+  type(c_ptr), value :: self
+  type(c_ptr), value :: result
+  type(c_ptr), value :: error
+end function
+
+!--------------------------------------------------
 ! /usr/include/gtk-4.0/gtk/gtksymbolicpaintable.h
 !--------------------------------------------------
 ! GDK_AVAILABLE_IN_4_6
@@ -16449,6 +16959,37 @@ subroutine gtk_column_view_row_set_accessible_label(self, label) bind(c)
   implicit none
   type(c_ptr), value :: self
   character(kind=c_char), dimension(*) :: label
+end subroutine
+
+!--------------------------------------------------
+! /usr/include/gtk-4.0/gtk/gtkaccessibletext.h
+!--------------------------------------------------
+! GDK_AVAILABLE_IN_4_14
+!void gtk_accessible_text_update_caret_position (GtkAccessibleText *self);
+subroutine gtk_accessible_text_update_caret_position(self) bind(c)
+  import :: c_ptr
+  implicit none
+  type(c_ptr), value :: self
+end subroutine
+
+! GDK_AVAILABLE_IN_4_14
+!void gtk_accessible_text_update_selection_bound (GtkAccessibleText *self);
+subroutine gtk_accessible_text_update_selection_bound(self) bind(c)
+  import :: c_ptr
+  implicit none
+  type(c_ptr), value :: self
+end subroutine
+
+! GDK_AVAILABLE_IN_4_14
+!void gtk_accessible_text_update_contents (GtkAccessibleText *self, GtkAccessibleTextContentChange change, unsigned int start, unsigned int end);
+subroutine gtk_accessible_text_update_contents(self, change, start, end)&
+& bind(c)
+  import :: c_ptr, c_int
+  implicit none
+  type(c_ptr), value :: self
+  integer(c_int), value :: change
+  integer(c_int), value :: start
+  integer(c_int), value :: end
 end subroutine
 
 !--------------------------------------------------
@@ -20639,6 +21180,54 @@ subroutine gtk_test_accessible_assertion_message_role(domain, file, line, func,&
 end subroutine
 
 !--------------------------------------------------
+! /usr/include/gtk-4.0/gtk/gtkgraphicsoffload.h
+!--------------------------------------------------
+! GDK_AVAILABLE_IN_4_14
+!GtkWidget * gtk_graphics_offload_new (GtkWidget *child);
+function gtk_graphics_offload_new(child) bind(c)
+  import :: c_ptr
+  implicit none
+  type(c_ptr) :: gtk_graphics_offload_new
+  type(c_ptr), value :: child
+end function
+
+! GDK_AVAILABLE_IN_4_14
+!void gtk_graphics_offload_set_child (GtkGraphicsOffload *self, GtkWidget *child);
+subroutine gtk_graphics_offload_set_child(self, child) bind(c)
+  import :: c_ptr
+  implicit none
+  type(c_ptr), value :: self
+  type(c_ptr), value :: child
+end subroutine
+
+! GDK_AVAILABLE_IN_4_14
+!GtkWidget * gtk_graphics_offload_get_child (GtkGraphicsOffload *self);
+function gtk_graphics_offload_get_child(self) bind(c)
+  import :: c_ptr
+  implicit none
+  type(c_ptr) :: gtk_graphics_offload_get_child
+  type(c_ptr), value :: self
+end function
+
+! GDK_AVAILABLE_IN_4_14
+!void gtk_graphics_offload_set_enabled (GtkGraphicsOffload *self, GtkGraphicsOffloadEnabled enabled);
+subroutine gtk_graphics_offload_set_enabled(self, enabled) bind(c)
+  import :: c_ptr, c_int
+  implicit none
+  type(c_ptr), value :: self
+  integer(c_int), value :: enabled
+end subroutine
+
+! 
+!GtkGraphicsOffloadEnabled gtk_graphics_offload_get_enabled (GtkGraphicsOffload *self);
+function gtk_graphics_offload_get_enabled(self) bind(c)
+  import :: c_int, c_ptr
+  implicit none
+  integer(c_int) :: gtk_graphics_offload_get_enabled
+  type(c_ptr), value :: self
+end function
+
+!--------------------------------------------------
 ! /usr/include/gtk-4.0/gtk/gtkdroptargetasync.h
 !--------------------------------------------------
 ! GDK_AVAILABLE_IN_ALL
@@ -21726,6 +22315,24 @@ subroutine gtk_video_set_loop(self, loop) bind(c)
   implicit none
   type(c_ptr), value :: self
   integer(c_int), value :: loop
+end subroutine
+
+! 
+!GtkGraphicsOffloadEnabled gtk_video_get_graphics_offload (GtkVideo *self);
+function gtk_video_get_graphics_offload(self) bind(c)
+  import :: c_int, c_ptr
+  implicit none
+  integer(c_int) :: gtk_video_get_graphics_offload
+  type(c_ptr), value :: self
+end function
+
+! GDK_AVAILABLE_IN_4_14
+!void gtk_video_set_graphics_offload (GtkVideo *self, GtkGraphicsOffloadEnabled enabled);
+subroutine gtk_video_set_graphics_offload(self, enabled) bind(c)
+  import :: c_ptr, c_int
+  implicit none
+  type(c_ptr), value :: self
+  integer(c_int), value :: enabled
 end subroutine
 
 !--------------------------------------------------
@@ -25917,6 +26524,41 @@ subroutine gtk_editable_label_stop_editing(self, commit) bind(c)
   type(c_ptr), value :: self
   integer(c_int), value :: commit
 end subroutine
+
+!--------------------------------------------------
+! /usr/include/gtk-4.0/gtk/a11y/gtkatspi.h
+!--------------------------------------------------
+!--------------------------------------------------
+! /usr/include/gtk-4.0/gtk/a11y/gtkatspisocket.h
+!--------------------------------------------------
+! GDK_AVAILABLE_IN_4_14
+!GtkAccessible * gtk_at_spi_socket_new (const char *bus_name, const char *object_path, GError **error);
+function gtk_at_spi_socket_new(bus_name, object_path, error) bind(c)
+  import :: c_ptr, c_char
+  implicit none
+  type(c_ptr) :: gtk_at_spi_socket_new
+  character(kind=c_char), dimension(*) :: bus_name
+  character(kind=c_char), dimension(*) :: object_path
+  type(c_ptr), value :: error
+end function
+
+! GDK_AVAILABLE_IN_4_14
+!const char * gtk_at_spi_socket_get_bus_name (GtkAtSpiSocket *self);
+function gtk_at_spi_socket_get_bus_name(self) bind(c)
+  import :: c_ptr
+  implicit none
+  type(c_ptr) :: gtk_at_spi_socket_get_bus_name
+  type(c_ptr), value :: self
+end function
+
+! GDK_AVAILABLE_IN_4_14
+!const char * gtk_at_spi_socket_get_object_path (GtkAtSpiSocket *self);
+function gtk_at_spi_socket_get_object_path(self) bind(c)
+  import :: c_ptr
+  implicit none
+  type(c_ptr) :: gtk_at_spi_socket_get_object_path
+  type(c_ptr), value :: self
+end function
 
 !--------------------------------------------------
 ! /usr/include/gtk-4.0/gtk/deprecated/gtkcellrendererprogress.h

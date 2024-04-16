@@ -57,8 +57,13 @@ GHookFinalizeFunc
 GHookFindFunc
 GHookFunc
 GHookMarshaller
+GIFFIClosureCallback
 GIOFunc
 GIOSchedulerJobFunc
+GIObjectInfoGetValueFunction
+GIObjectInfoRefFunction
+GIObjectInfoSetValueFunction
+GIObjectInfoUnrefFunction
 GInstanceInitFunc
 GInterfaceFinalizeFunc
 GInterfaceInitFunc
@@ -142,6 +147,7 @@ GdkPixbufModuleUpdatedFunc
 GdkPixbufSaveFunc
 GdkWaylandToplevelExported
 GskParseErrorFunc
+GskPathForeachFunc
 GtkAssistantPageFunc
 GtkCellAllocCallback
 GtkCellCallback
