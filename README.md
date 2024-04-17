@@ -2,9 +2,11 @@
 
 **This branch is for GTK 4**
 
-The gtk-fortran project aims to offer scientists programming in Fortran a cross-platform library to build Graphical User Interfaces (GUI). Gtk-fortran is a partial GTK / Fortran binding 100% written in Fortran, thanks to the ISO_C_BINDING module for interoperability between C and Fortran, which is a part of the Fortran 2003 standard.
+The gtk-fortran project aims to offer scientists programming in Fortran a cross-platform library to build Graphical User Interfaces (GUI). Gtk-fortran is a partial GTK / Fortran binding 100% written in Fortran, thanks to the C / Fortran interoperability features introduced in the Fortran 2003 standard.
 
-To install gtk-fortran, you can follow the instructions in the `INSTALL` file or the more detailed instructions of the project wiki:
+To install gtk-fortran, you can follow the quick instructions in the `INSTALL` file or the more [detailed instructions](https://github.com/vmagnin/gtk-fortran/wiki/Installation) on the wiki documentation.
+
+Full documentation (wiki tab):
 [https://github.com/vmagnin/gtk-fortran/wiki](https://github.com/vmagnin/gtk-fortran/wiki)
 
 Please post bugs on GitHub:
