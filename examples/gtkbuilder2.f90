@@ -20,7 +20,7 @@
 !
 ! Example using GtkBuilder
 ! Jens Hunger, 04-01-2011
-! Last modified: vmagnin 2020-06-20 (GTK 4 version), 2022-07-20
+! Last modified: vmagnin 2020-06-20 (GTK 4 version), 2024-05-08
 
 module widgets
   use, intrinsic :: iso_c_binding
@@ -61,13 +61,6 @@ contains
 
     print *, "Hello World!"
   end subroutine hello
-
-  subroutine button1clicked(widget, gdata) bind(c)
-    !GCC$ ATTRIBUTES DLLEXPORT :: button1clicked
-    type(c_ptr), value, intent(in) :: widget, gdata
-
-    print *, "Button 1 clicked!"
-  end subroutine button1clicked
 
   subroutine button2clicked(widget, gdata) bind(c)
     !GCC$ ATTRIBUTES DLLEXPORT :: button2clicked
