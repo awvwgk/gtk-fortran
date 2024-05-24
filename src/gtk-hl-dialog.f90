@@ -49,6 +49,7 @@ module gtk_hl_dialog
        & gtk_about_dialog_set_copyright, gtk_about_dialog_set_documenters, &
        & gtk_about_dialog_set_license, gtk_about_dialog_set_program_name, &
        & gtk_about_dialog_set_translator_credits, &
+       & gtk_about_dialog_set_logo, &
        & gtk_about_dialog_set_version, gtk_about_dialog_set_website, &
        & gtk_about_dialog_set_website_label, gtk_box_append, &
        & gtk_box_new, gtk_about_dialog_set_license_type, &
@@ -282,6 +283,8 @@ contains
     about = gtk_about_dialog_new()
     call gtk_window_set_modal(about, TRUE)
     if (present(parent)) call gtk_window_set_transient_for(about, parent)
+
+    if (present(logo)) call gtk_about_dialog_set_logo(about, logo)
 
     if (present(name)) then
        call f_c_string(name, string)
