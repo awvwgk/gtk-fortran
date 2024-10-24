@@ -97,6 +97,10 @@ GSocketSourceFunc
 GSourceDisposeFunc
 GSourceDummyMarshal
 GSourceFunc
+GSourceFuncsCheckFunc
+GSourceFuncsDispatchFunc
+GSourceFuncsFinalizeFunc
+GSourceFuncsPrepareFunc
 GSourceOnceFunc
 GSpawnChildSetupFunc
 GTaskThreadFunc
@@ -129,6 +133,7 @@ GVoidFunc
 GWeakNotify
 GdkContentDeserializeFunc
 GdkContentSerializeFunc
+GdkCursorGetTextureCallback
 GdkPixbufDestroyNotify
 GdkPixbufModuleBeginLoadFunc
 GdkPixbufModuleFillInfoFunc
@@ -178,6 +183,7 @@ GtkPrintSettingsFunc
 GtkPrinterFunc
 GtkScaleFormatValueFunc
 GtkShortcutFunc
+GtkTextBufferCommitNotify
 GtkTextCharPredicate
 GtkTextTagTableForeach
 GtkTickCallback

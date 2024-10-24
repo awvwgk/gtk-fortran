@@ -6071,7 +6071,7 @@ subroutine gtk_snapshot_push_cross_fade(snapshot, progress) bind(c)
   real(c_double), value :: progress
 end subroutine
 
-! GDK_AVAILABLE_IN_ALL
+! GDK_DEPRECATED_IN_4_16_FOR(GtkGLArea)
 !void gtk_snapshot_push_gl_shader (GtkSnapshot *snapshot, GskGLShader *shader, const graphene_rect_t *bounds, GBytes *take_args);
 subroutine gtk_snapshot_push_gl_shader(snapshot, shader, bounds, take_args)&
 & bind(c)
@@ -6083,7 +6083,7 @@ subroutine gtk_snapshot_push_gl_shader(snapshot, shader, bounds, take_args)&
   type(c_ptr), value :: take_args
 end subroutine
 
-! GDK_AVAILABLE_IN_ALL
+! GDK_DEPRECATED_IN_4_16_FOR(GtkGLArea)
 !void gtk_snapshot_gl_shader_pop_texture (GtkSnapshot *snapshot);
 subroutine gtk_snapshot_gl_shader_pop_texture(snapshot) bind(c)
   import :: c_ptr
@@ -7477,7 +7477,7 @@ function gtk_widget_get_pango_context(widget) bind(c)
   type(c_ptr), value :: widget
 end function
 
-! GDK_AVAILABLE_IN_ALL
+! GDK_DEPRECATED_IN_4_16
 !void gtk_widget_set_font_options (GtkWidget *widget, const cairo_font_options_t *options);
 subroutine gtk_widget_set_font_options(widget, options) bind(c)
   import :: c_ptr
@@ -7486,7 +7486,7 @@ subroutine gtk_widget_set_font_options(widget, options) bind(c)
   type(c_ptr), value :: options
 end subroutine
 
-! GDK_AVAILABLE_IN_ALL
+! GDK_DEPRECATED_IN_4_16
 !const cairo_font_options_t *gtk_widget_get_font_options (GtkWidget *widget);
 function gtk_widget_get_font_options(widget) bind(c)
   import :: c_ptr
@@ -21227,6 +21227,24 @@ function gtk_graphics_offload_get_enabled(self) bind(c)
   type(c_ptr), value :: self
 end function
 
+! GDK_AVAILABLE_IN_4_16
+!void gtk_graphics_offload_set_black_background (GtkGraphicsOffload *self, gboolean value);
+subroutine gtk_graphics_offload_set_black_background(self, value) bind(c)
+  import :: c_ptr, c_int
+  implicit none
+  type(c_ptr), value :: self
+  integer(c_int), value :: value
+end subroutine
+
+! GDK_AVAILABLE_IN_4_16
+!gboolean gtk_graphics_offload_get_black_background (GtkGraphicsOffload *self);
+function gtk_graphics_offload_get_black_background(self) bind(c)
+  import :: c_int, c_ptr
+  implicit none
+  integer(c_int) :: gtk_graphics_offload_get_black_background
+  type(c_ptr), value :: self
+end function
+
 !--------------------------------------------------
 ! /usr/include/gtk-4.0/gtk/gtkdroptargetasync.h
 !--------------------------------------------------
@@ -23501,6 +23519,30 @@ subroutine gtk_text_buffer_end_user_action(buffer) bind(c)
   import :: c_ptr
   implicit none
   type(c_ptr), value :: buffer
+end subroutine
+
+! GDK_AVAILABLE_IN_4_16
+!guint gtk_text_buffer_add_commit_notify (GtkTextBuffer *buffer, GtkTextBufferNotifyFlags flags, GtkTextBufferCommitNotify commit_notify, gpointer user_data, GDestroyNotify destroy);
+function gtk_text_buffer_add_commit_notify(buffer, flags, commit_notify,&
+& user_data, destroy) bind(c)
+  import :: c_int, c_ptr, c_funptr
+  implicit none
+  integer(c_int) :: gtk_text_buffer_add_commit_notify
+  type(c_ptr), value :: buffer
+  integer(c_int), value :: flags
+  type(c_funptr), value :: commit_notify
+  type(c_ptr), value :: user_data
+  type(c_funptr), value :: destroy
+end function
+
+! GDK_AVAILABLE_IN_4_16
+!void gtk_text_buffer_remove_commit_notify (GtkTextBuffer *buffer, guint commit_notify_handler);
+subroutine gtk_text_buffer_remove_commit_notify(buffer, commit_notify_handler)&
+& bind(c)
+  import :: c_ptr, c_int
+  implicit none
+  type(c_ptr), value :: buffer
+  integer(c_int), value :: commit_notify_handler
 end subroutine
 
 !--------------------------------------------------
@@ -36393,6 +36435,18 @@ function gtk_css_section_new(file, start, end) bind(c)
   type(c_ptr), value :: end
 end function
 
+! GDK_AVAILABLE_IN_4_16
+!GtkCssSection * gtk_css_section_new_with_bytes (GFile *file, GBytes *bytes, const GtkCssLocation *start, const GtkCssLocation *end);
+function gtk_css_section_new_with_bytes(file, bytes, start, end) bind(c)
+  import :: c_ptr
+  implicit none
+  type(c_ptr) :: gtk_css_section_new_with_bytes
+  type(c_ptr), value :: file
+  type(c_ptr), value :: bytes
+  type(c_ptr), value :: start
+  type(c_ptr), value :: end
+end function
+
 ! GDK_AVAILABLE_IN_ALL
 !GtkCssSection * gtk_css_section_ref (GtkCssSection *section);
 function gtk_css_section_ref(section) bind(c)
@@ -36443,6 +36497,15 @@ function gtk_css_section_get_file(section) bind(c)
   import :: c_ptr
   implicit none
   type(c_ptr) :: gtk_css_section_get_file
+  type(c_ptr), value :: section
+end function
+
+! GDK_AVAILABLE_IN_4_16
+!GBytes * gtk_css_section_get_bytes (const GtkCssSection *section);
+function gtk_css_section_get_bytes(section) bind(c)
+  import :: c_ptr
+  implicit none
+  type(c_ptr) :: gtk_css_section_get_bytes
   type(c_ptr), value :: section
 end function
 
