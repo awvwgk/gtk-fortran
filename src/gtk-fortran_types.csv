@@ -28,6 +28,8 @@ char;character(kind=c_char);c_char
 gchar;integer(kind=c_int8_t);c_int8_t
 guchar;integer(kind=c_int8_t);c_int8_t
 GStrv;type(c_ptr);c_ptr
+GVariant;;
+GVariantType;;
 double;real(c_double);c_double
 gdouble;real(c_double);c_double
 float;real(c_float);c_float

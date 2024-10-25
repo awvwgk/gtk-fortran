@@ -4477,7 +4477,7 @@ function g_variant_new_array(child_type, children, n_children) bind(c)
   implicit none
   type(c_ptr) :: g_variant_new_array
   type(c_ptr), value :: child_type
-  type(c_ptr), value :: children
+  type(c_ptr), dimension(*) :: children
   integer(c_size_t), value :: n_children
 end function
 
@@ -4487,7 +4487,7 @@ function g_variant_new_tuple(children, n_children) bind(c)
   import :: c_ptr, c_size_t
   implicit none
   type(c_ptr) :: g_variant_new_tuple
-  type(c_ptr), value :: children
+  type(c_ptr), dimension(*) :: children
   integer(c_size_t), value :: n_children
 end function
 
@@ -7114,7 +7114,7 @@ function g_variant_type_new_tuple(items, length) bind(c)
   import :: c_ptr, c_int
   implicit none
   type(c_ptr) :: g_variant_type_new_tuple
-  type(c_ptr), value :: items
+  type(c_ptr), dimension(*) :: items
   integer(c_int), value :: length
 end function
 
@@ -22814,7 +22814,7 @@ function g_action_parse_detailed_name(detailed_name, action_name, target_value,&
   integer(c_int) :: g_action_parse_detailed_name
   character(kind=c_char), dimension(*) :: detailed_name
   type(c_ptr), dimension(*) :: action_name
-  type(c_ptr), value :: target_value
+  type(c_ptr), dimension(*) :: target_value
   type(c_ptr), value :: error
 end function
 
@@ -27123,7 +27123,7 @@ function g_menu_attribute_iter_get_next(iter, out_name, value) bind(c)
   integer(c_int) :: g_menu_attribute_iter_get_next
   type(c_ptr), value :: iter
   type(c_ptr), dimension(*) :: out_name
-  type(c_ptr), value :: value
+  type(c_ptr), dimension(*) :: value
 end function
 
 ! GIO_AVAILABLE_IN_2_32
@@ -31721,10 +31721,10 @@ function g_action_group_query_action(action_group, action_name, enabled,&
   type(c_ptr), value :: action_group
   character(kind=c_char), dimension(*) :: action_name
   type(c_ptr), value :: enabled
-  type(c_ptr), value :: parameter_type
-  type(c_ptr), value :: state_type
-  type(c_ptr), value :: state_hint
-  type(c_ptr), value :: state
+  type(c_ptr), dimension(*) :: parameter_type
+  type(c_ptr), dimension(*) :: state_type
+  type(c_ptr), dimension(*) :: state_hint
+  type(c_ptr), dimension(*) :: state
 end function
 
 !--------------------------------------------------
@@ -32643,7 +32643,7 @@ subroutine g_settings_backend_flatten_tree(tree, path, keys, values) bind(c)
   type(c_ptr), value :: tree
   type(c_ptr), dimension(*) :: path
   type(c_ptr), dimension(*) :: keys
-  type(c_ptr), value :: values
+  type(c_ptr), dimension(*) :: values
 end subroutine
 
 ! GIO_AVAILABLE_IN_ALL

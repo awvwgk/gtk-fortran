@@ -8081,7 +8081,7 @@ function gtk_widget_class_query_action(widget_class, index_, owner,&
   integer(c_int), value :: index_
   type(c_ptr), value :: owner
   type(c_ptr), dimension(*) :: action_name
-  type(c_ptr), value :: parameter_type
+  type(c_ptr), dimension(*) :: parameter_type
   type(c_ptr), dimension(*) :: property_name
 end function
 
