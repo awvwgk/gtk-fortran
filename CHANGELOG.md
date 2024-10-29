@@ -1,6 +1,17 @@
 # Changelog
 All notable changes to the gtk-fortran project are documented in this file. The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [gtk-fortran 4.7.0] 2024-??-??
+This release offers interfaces to GTK 4.16 and GLib 2.82 (generated under Fedora 41 with GTK 4.16.3 and GLib 2.82.2).
+
+### Added
+- `src/gtk-hl-dialog.f90`: can now manage the logo via `gtk_about_dialog_set_logo()`. Contributed by Florian Ober.
+- `cfwrapper.py`: the gtk3 branch now also uses `gtkenums-auto.in` and `gtk-auto.in`, following the fpm feature backport.
+
+### Fixed
+- cfwrapper: Variant and GVariantType types are now correctly used when declared with a double `*` in C. [Issue #289](https://github.com/vmagnin/gtk-fortran/issues/289).
+- `src/gtk-hl-dialog.f90`: if providing artists or documenters, the `cptr` length was erroneously calculated from the number of authors. Contributed by Florian Ober.
+
 
 ## [gtk-fortran 4.6.0] 2024-04-19
 This release offers interfaces to GTK 4.14 and GLib 2.80 (generated under Fedora 40 with GTK 4.14.2 and GLib 2.80.0).
