@@ -1,7 +1,7 @@
 # Changelog
 All notable changes to the gtk-fortran project are documented in this file. The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
-## [gtk-fortran 4.7.0] 2024-??-??
+## [gtk-fortran 4.7.0] 2024-11-05
 This release offers interfaces to GTK 4.16 and GLib 2.82 (generated under Fedora 41 with GTK 4.16.3 and GLib 2.82.2).
 
 ### Added
